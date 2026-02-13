@@ -1,0 +1,1 @@
+/usr/bin/g++ -fPIC -g -shared  -o ip_scanner.cpython-312-x86_64-linux-gnu.so CMakeFiles/ip_scanner.dir/ip_scanner.cpp.o  -lpthread 

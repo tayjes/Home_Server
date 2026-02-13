@@ -1,0 +1,3 @@
+/home/tayjes/Documents/pycc/build/CMakeFiles/scan.dir
+/home/tayjes/Documents/pycc/build/CMakeFiles/edit_cache.dir
+/home/tayjes/Documents/pycc/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/g++ -fPIC -g -shared  -o example.so CMakeFiles/example.dir/main.cpp.o 
