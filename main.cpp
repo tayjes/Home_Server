@@ -1,3 +1,4 @@
+//include header
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <arpa/inet.h>
@@ -11,13 +12,51 @@
 #include <vector>
 #include <string>
 #include <iostream>
-namespace py = pybind11;
-using py::list;
-struct Device {
-    std::string ip;
-    std::string mac;
-};
+#include <cctype>
+#include <algorithm>
+#include <unordered_map>
+#include <fstream>
+//EO header
 
+//for testing here!
+//#include <pybind11/embed.h>
+
+
+namespace py = pybind11;
+
+//Hashmap for Storing
+std::unordered_map<std::string, std::string> oui_map;
+
+//loading the key-value from MAC.txt into oui_map function need to run only once
+void init(){
+    std::ifstream file("helper/MAC.txt");
+    std::string line;
+
+    while (std::getline(file, line)) {
+
+        
+        if (line.find("(hex)") != std::string::npos) {
+            std::string key = line.substr(0, 8);
+            size_t pos = line.find("(hex)");
+            std::string value = line.substr(pos + 6);
+            value.erase(0, value.find_first_not_of(" \t"));
+
+            oui_map[key] = value;
+        }
+    }
+}
+
+//search in the Hashmap only use it after running init() fucntion
+std::string search(std::string key){
+    std::transform(key.begin(), key.end(), key.begin(), [](unsigned char c){ return std::toupper(c); });
+    std::transform(key.begin(), key.end(), key.begin(), [](unsigned char c) {return (c == ':') ? '-' : c;});
+    
+    auto it = oui_map.find(key);
+    if (it != oui_map.end()) return it->second;
+    return "NOT FOUND";
+}
+
+//scan the network iface is the interface of the network connected to
 py::list arp_scan(const std::string& iface) {
     py::list result;
 
@@ -89,7 +128,8 @@ py::list arp_scan(const std::string& iface) {
             py::dict dev;
             dev["ip"] = ip;
             dev["mac"] = mac;
-
+            std::string key=mac;
+            dev["company"]=search(key.substr(0,8));
             result.append(dev);
         }
     }
@@ -97,14 +137,23 @@ py::list arp_scan(const std::string& iface) {
     close(sock);
     return result;
 }
+//add main only for Testing
+/*int main() {
+    py::scoped_interpreter guard{};  //To Start Python interpreter
 
-list myfunction(std::string name){
-    std::cout<<name;
-    list x;
-    x.append(name);
-    return x;
-}
+    init();
+
+    py::list tmp = arp_scan("wlp2s0");
+
+    for (auto it : tmp) {
+        std::cout << py::str(it).cast<std::string>() << "\n";
+    }
+
+    return 0;
+}*/
+
+//Uncomment when running cmake
 PYBIND11_MODULE(scan, m) {
-    m.def("name",&myfunction,"list name",py::arg("interface"));
     m.def("arp_scan", &arp_scan, "Fast ARP scan", py::arg("interface"));
+    m.def("init", &init, "Load Mac address");
 }

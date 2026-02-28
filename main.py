@@ -1,24 +1,17 @@
+#import modules
 from fastapi import FastAPI, WebSocket
 import asyncio
 import scan
 from pydantic import BaseModel
 from fastapi.concurrency import run_in_threadpool
+
+#fastapi app
 app = FastAPI()
-history=[]
-@app.websocket("/ws")
-async def websocket_endpoint(ws: WebSocket):
-    await ws.accept()
-    print("Client connected")
 
-    try:
-        while True:
-            data = await run_in_threadpool(ws.receive_text,)
-            print("From Flutter:", data)
-            history.append(data)
+#load mac address
+scan.init()
 
-            await ws.send_text(f"Echo: {data}")
-    except Exception:
-        print("Client disconnected")
+#Route
 @app.get("/")
 def home():
     return {"status":"connected"}

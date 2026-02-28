@@ -1,0 +1,8 @@
+#to the main.cpp remove or comment pybind_modules and 
+g++ main.cpp -o app -std=c++17   $(python3 -m pybind11 --includes)   -lpython3.12
+
+#to run the python fastapi server
+sudo ./venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+#to turn on the venv
+source venv/bin/activate

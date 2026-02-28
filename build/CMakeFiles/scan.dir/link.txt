@@ -1,1 +1,1 @@
-/usr/bin/g++ -fPIC -g -shared  -o scan.cpython-312-x86_64-linux-gnu.so CMakeFiles/scan.dir/main.cpp.o 
+/usr/bin/g++ -fPIC -g -shared  -o /home/tayjes/Documents/pycc/venv/lib64/python3.12/site-packages/scan.cpython-312-x86_64-linux-gnu.so CMakeFiles/scan.dir/main.cpp.o 

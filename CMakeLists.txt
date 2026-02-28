@@ -4,7 +4,6 @@ project(pybind11_ip_scanner)
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_C_STANDARD_REQUIRED 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Generate compile_commands.json for VS Code
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -19,3 +18,8 @@ find_package(pybind11 REQUIRED)
 # Original example module
 pybind11_add_module(scan main.cpp)
 
+#Output file location
+set_target_properties(scan PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY
+    "${CMAKE_SOURCE_DIR}/venv/lib64/python3.12/site-packages"
+)
