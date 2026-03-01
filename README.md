@@ -69,7 +69,7 @@ cd build
 cmake ..
 make
 
-This generates a file like: scan.cpython-312-x86_64-linux-gnu.so
+This generates a file like: scan.cpython-312-x86_64-linux-gnu.so(in linux env)
 
 Copy it into your virtual environment:
 
