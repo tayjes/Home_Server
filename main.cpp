@@ -18,7 +18,7 @@
 #include <fstream>
 //EO header
 
-//for testing here!
+//for testing here in main.cpp add this!
 //#include <pybind11/embed.h>
 
 

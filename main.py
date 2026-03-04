@@ -5,11 +5,11 @@ import scan
 from pydantic import BaseModel
 from fastapi.concurrency import run_in_threadpool
 
-#fastapi app
-app = FastAPI()
-
 #load mac address
 scan.init()
+
+#fastapi app
+app = FastAPI()
 
 #Route
 @app.get("/")
