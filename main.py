@@ -16,6 +16,6 @@ app = FastAPI()
 def home():
     return {"status":"connected"}
 @app.get("/Scanner")
-async def network():
-    devices = await run_in_threadpool(scan.arp_scan, "wlp2s0")
+async def network(iface: str = "eth0"):
+    devices = await run_in_threadpool(scan.arp_scan, iface)
     return devices

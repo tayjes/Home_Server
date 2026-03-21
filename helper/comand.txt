@@ -6,3 +6,14 @@ sudo ./venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 #to turn on the venv
 source venv/bin/activate
+
+#to build the container
+sudo docker build -t network-scanner .
+
+#run the container you need to add some flag for permission
+sudo docker run \
+  --network host \
+  --cap-add NET_RAW \
+  --cap-add NET_ADMIN \
+  -e MAC_DB_PATH=/app/helper/MAC.txt \
+  network-scanner

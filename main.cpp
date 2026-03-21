@@ -16,7 +16,11 @@
 #include <algorithm>
 #include <unordered_map>
 #include <fstream>
+#include <unordered_set>
+#include <mutex>
 //EO header
+
+static std::once_flag init_flag;//to check that init() runs only once
 
 //for testing here in main.cpp add this!
 //#include <pybind11/embed.h>
@@ -29,21 +33,29 @@ std::unordered_map<std::string, std::string> oui_map;
 
 //loading the key-value from MAC.txt into oui_map function need to run only once
 void init(){
-    std::ifstream file("helper/MAC.txt");
-    std::string line;
+    std::call_once(init_flag, []() {
+        const char* env_path = getenv("MAC_DB_PATH");
+        std::string path = env_path ? env_path : "/app/helper/MAC.txt";
+        std::ifstream file(path);
 
-    while (std::getline(file, line)) {
-
-        
-        if (line.find("(hex)") != std::string::npos) {
-            std::string key = line.substr(0, 8);
-            size_t pos = line.find("(hex)");
-            std::string value = line.substr(pos + 6);
-            value.erase(0, value.find_first_not_of(" \t"));
-
-            oui_map[key] = value;
+        if (!file.is_open()) {
+            throw std::runtime_error("Cannot open MAC database at: " + path);
         }
-    }
+        std::string line;
+
+        while (std::getline(file, line)) {
+
+            
+            if (line.find("(hex)") != std::string::npos) {
+                std::string key = line.substr(0, 8);
+                size_t pos = line.find("(hex)");
+                std::string value = line.substr(pos + 6);
+                value.erase(0, value.find_first_not_of(" \t"));
+
+                oui_map[key] = value;
+            }
+        }
+    });
 }
 
 //search in the Hashmap only use it after running init() fucntion
@@ -59,6 +71,7 @@ std::string search(std::string key){
 //scan the network iface is the interface of the network connected to
 py::list arp_scan(const std::string& iface) {
     py::list result;
+    std::unordered_set<std::string> seen; 
 
     int sock = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ARP));
     if (sock < 0) return result;
@@ -66,16 +79,24 @@ py::list arp_scan(const std::string& iface) {
     struct ifreq ifr{};
     strncpy(ifr.ifr_name, iface.c_str(), IFNAMSIZ - 1);
 
-    ioctl(sock, SIOCGIFINDEX, &ifr);
+    if (ioctl(sock, SIOCGIFINDEX, &ifr) < 0) {
+        close(sock);
+        throw std::runtime_error("Failed to get interface index for: " + iface);
+    }
     int ifindex = ifr.ifr_ifindex;
 
-    ioctl(sock, SIOCGIFHWADDR, &ifr);
+    if (ioctl(sock, SIOCGIFHWADDR, &ifr) < 0) {
+        close(sock);
+        throw std::runtime_error("Failed to get MAC address for: " + iface);
+    }
     unsigned char src_mac[6];
     memcpy(src_mac, ifr.ifr_hwaddr.sa_data, 6);
 
-    ioctl(sock, SIOCGIFADDR, &ifr);
+    if (ioctl(sock, SIOCGIFADDR, &ifr) < 0) {
+        close(sock);
+        throw std::runtime_error("Failed to get IP address for: " + iface);
+     }
     uint32_t src_ip = ((struct sockaddr_in*)&ifr.ifr_addr)->sin_addr.s_addr;
-
     sockaddr_ll addr{};
     addr.sll_ifindex = ifindex;
     addr.sll_family = AF_PACKET;
@@ -125,6 +146,9 @@ py::list arp_scan(const std::string& iface) {
                      rarp->arp_sha[0], rarp->arp_sha[1], rarp->arp_sha[2],
                      rarp->arp_sha[3], rarp->arp_sha[4], rarp->arp_sha[5]);
 
+            std::string mac_str = mac;
+            if (seen.count(mac_str)) continue;  // skip duplicate
+            seen.insert(mac_str);
             py::dict dev;
             dev["ip"] = ip;
             dev["mac"] = mac;
