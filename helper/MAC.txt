@@ -233250,9 +233250,3 @@ E88F8E     (base 16)		Hoags Technologies India Private Limited
 				1 Infinite Loop
 				Cupertino  CA  95014
 				US
-
-00-9A-17  (hex)		Home Camera(Camera has no brand).
-009A17    (base 16)		XXX.
-				1 XXXX
-				XXXXXXXX  
-				XX
