@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "/home/tayjes/Documents/pycc/venv/lib64/python3.12/site-packages/scan.cpython-312-x86_64-linux-gnu.so"
-  "/home/tayjes/Documents/pycc/venv/lib64/python3.12/site-packages/scan.pdb"
-  "CMakeFiles/scan.dir/main.cpp.o"
-  "CMakeFiles/scan.dir/main.cpp.o.d"
+  "/home/tayjes/Documents/pycc/lib/scan.cpython-312-x86_64-linux-gnu.so"
+  "/home/tayjes/Documents/pycc/lib/scan.pdb"
+  "CMakeFiles/scan.dir/lib/scanner/main.cpp.o"
+  "CMakeFiles/scan.dir/lib/scanner/main.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

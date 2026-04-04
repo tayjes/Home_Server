@@ -14,9 +14,6 @@
 # EXTERNAL cache entries
 ########################
 
-//The directory containing a CMake configuration file for /home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11.
-/home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11_DIR:PATH=/home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11_DIR-NOTFOUND
-
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
@@ -226,17 +223,8 @@ Project_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/home/tayjes/Documents/pycc
 
-//The directory containing a CMake configuration file for pybind11.
-pybind11_DIR:PATH=pybind11_DIR-NOTFOUND
-
-//Value Computed by CMake
-pybind11_example_BINARY_DIR:STATIC=/home/tayjes/Documents/pycc/build
-
-//Value Computed by CMake
-pybind11_example_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-pybind11_example_SOURCE_DIR:STATIC=/home/tayjes/Documents/pycc
+//No help, variable specified on the command line.
+pybind11_DIR:UNINITIALIZED=/home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11
 
 //Value Computed by CMake
 pybind11_ip_scanner_BINARY_DIR:STATIC=/home/tayjes/Documents/pycc/build
@@ -246,15 +234,6 @@ pybind11_ip_scanner_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 pybind11_ip_scanner_SOURCE_DIR:STATIC=/home/tayjes/Documents/pycc
-
-//Value Computed by CMake
-scan_BINARY_DIR:STATIC=/home/tayjes/Documents/pycc/build
-
-//Value Computed by CMake
-scan_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-scan_SOURCE_DIR:STATIC=/home/tayjes/Documents/pycc
 
 
 ########################
@@ -327,8 +306,6 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
-CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.

@@ -1,4 +1,5 @@
-CMakeFiles/scan.dir/main.cpp.o: /home/tayjes/Documents/pycc/main.cpp \
+CMakeFiles/scan.dir/lib/scanner/main.cpp.o: \
+ /home/tayjes/Documents/pycc/lib/scanner/main.cpp \
  /usr/include/stdc-predef.h \
  /home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/include/pybind11/pybind11.h \
  /home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/include/pybind11/detail/class.h \
@@ -395,6 +396,7 @@ CMakeFiles/scan.dir/main.cpp.o: /home/tayjes/Documents/pycc/main.cpp \
  /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/net/if.h \
  /usr/include/netinet/if_ether.h /usr/include/linux/if_ether.h \
  /usr/include/net/ethernet.h /usr/include/net/if_arp.h \
+ /usr/include/netinet/ip.h /usr/include/netinet/ip_icmp.h \
  /usr/include/netpacket/packet.h \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \

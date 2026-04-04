@@ -3,8 +3,8 @@ from fastapi import FastAPI, WebSocket
 import asyncio
 import scan
 from pydantic import BaseModel
-from fastapi.concurrency import run_in_threadpool
-
+from typing import Optional
+from fastapi.concurrency import run_in_threadpool 
 #load mac address
 scan.init()
 

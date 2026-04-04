@@ -2,18 +2,6 @@
 	"entries" : 
 	[
 		{
-			"name" : "/home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for /home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11_DIR-NOTFOUND"
-		},
-		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -525,10 +513,6 @@
 			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
 			"properties" : 
 			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
 				{
 					"name" : "HELPSTRING",
 					"value" : "No help, variable specified on the command line."
@@ -1443,11 +1427,11 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for pybind11."
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "PATH",
-			"value" : "pybind11_DIR-NOTFOUND"
+			"type" : "UNINITIALIZED",
+			"value" : "/home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/share/cmake/pybind11"
 		},
 		{
 			"name" : "pybind11_INCLUDE_DIRS",
@@ -1460,42 +1444,6 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "/home/tayjes/Documents/pycc/venv/lib/python3.12/site-packages/pybind11/include;/usr/include/python3.12"
-		},
-		{
-			"name" : "pybind11_example_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/tayjes/Documents/pycc/build"
-		},
-		{
-			"name" : "pybind11_example_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "pybind11_example_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/tayjes/Documents/pycc"
 		},
 		{
 			"name" : "pybind11_ip_scanner_BINARY_DIR",
@@ -1523,42 +1471,6 @@
 		},
 		{
 			"name" : "pybind11_ip_scanner_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/tayjes/Documents/pycc"
-		},
-		{
-			"name" : "scan_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/tayjes/Documents/pycc/build"
-		},
-		{
-			"name" : "scan_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "scan_SOURCE_DIR",
 			"properties" : 
 			[
 				{

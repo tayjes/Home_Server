@@ -11,9 +11,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Debug step - see where pybind11 actually is
-RUN python3 -c "import pybind11; print(pybind11.get_cmake_dir())"
-
 COPY . .
 
 RUN mkdir -p build && cd build && \
@@ -22,4 +19,5 @@ RUN mkdir -p build && cd build && \
     cmake --build .
 
 EXPOSE 3000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3000"]
+# Added PYTHONPATH=/app/lib so Python finds scan.so inside lib/
+CMD ["sh", "-c", "PYTHONPATH=/app/lib uvicorn lib.main:app --host 0.0.0.0 --port 3000"]

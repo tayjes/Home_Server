@@ -129,29 +129,29 @@ scan/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/scan.dir/build.make CMakeFiles/scan.dir/build
 .PHONY : scan/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+lib/scanner/main.o: lib/scanner/main.cpp.o
+.PHONY : lib/scanner/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/scan.dir/build.make CMakeFiles/scan.dir/main.cpp.o
-.PHONY : main.cpp.o
+lib/scanner/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/scan.dir/build.make CMakeFiles/scan.dir/lib/scanner/main.cpp.o
+.PHONY : lib/scanner/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+lib/scanner/main.i: lib/scanner/main.cpp.i
+.PHONY : lib/scanner/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/scan.dir/build.make CMakeFiles/scan.dir/main.cpp.i
-.PHONY : main.cpp.i
+lib/scanner/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/scan.dir/build.make CMakeFiles/scan.dir/lib/scanner/main.cpp.i
+.PHONY : lib/scanner/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+lib/scanner/main.s: lib/scanner/main.cpp.s
+.PHONY : lib/scanner/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/scan.dir/build.make CMakeFiles/scan.dir/main.cpp.s
-.PHONY : main.cpp.s
+lib/scanner/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/scan.dir/build.make CMakeFiles/scan.dir/lib/scanner/main.cpp.s
+.PHONY : lib/scanner/main.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... scan"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... lib/scanner/main.o"
+	@echo "... lib/scanner/main.i"
+	@echo "... lib/scanner/main.s"
 .PHONY : help
 
 
