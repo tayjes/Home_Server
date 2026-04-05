@@ -51,7 +51,7 @@ async def ipcamera(iface: str = ""):
         iface = get_active_iface()
 
     #if last_scan is empty, run a fresh scan first
-    if last_scan[0]=={}:                       # fixed: last_scan[0]=={} was wrong
+    if last_scan[0]=={}:                       
         d = await run_in_threadpool(scan.arp_scan, iface)
         last_scan[0]=d
 
