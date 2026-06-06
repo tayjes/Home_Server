@@ -16,7 +16,9 @@ def get_active_iface():
             continue
         addrs=netifaces.ifaddresses(iface)
         if netifaces.AF_INET in addrs:
+            print(f"Active interface found: {iface}")
             return iface
+    print("No active interface found, defaulting to eth0")
     return "eth0" #default ethernet for linux(docker image)
 
 class Device(BaseModel):
@@ -28,7 +30,7 @@ class Device(BaseModel):
 
 #tmp to store data 
 last_scan:list[dict]=[{}]
-
+camera_results:list[dict]=[{}]
 #fastapi app
 app = FastAPI()
 #Route
@@ -37,7 +39,9 @@ def home():
     return {"status":"connected"}
 
 @app.get("/Scanner",response_model=list[Device])
-async def network(iface: str = "wlp2s0"):
+async def network(iface: str = ""):
+    if not iface:
+        iface = get_active_iface()
     
     d = await run_in_threadpool(scan.arp_scan, iface)
     last_scan[0]=d
@@ -51,7 +55,8 @@ async def ipcamera(iface: str = ""):
         iface = get_active_iface()
 
     #if last_scan is empty, run a fresh scan first
-    if last_scan[0]=={}:                       
+    if last_scan[0]=={}:
+        print("Running initial scan...")                       
         d = await run_in_threadpool(scan.arp_scan, iface)
         last_scan[0]=d
 
@@ -59,9 +64,11 @@ async def ipcamera(iface: str = ""):
     results = []
     for device in last_scan[0]:
         cam = await run_in_threadpool(camera.detect_camera, device["ip"])
-        cam["ip"] = device["ip"]
-        cam["mac"] = device["mac"]
-        results.append(cam)
+        if cam["is_camera"]:
+            cam["ip"] = device["ip"]
+            cam["mac"] = device["mac"]
+            results.append(cam)
 
+    camera_results[0] = results
     return results
 
