@@ -3,3 +3,4 @@ uvicorn
 pybind11
 netifaces
 scapy
+opencv-python-headless
